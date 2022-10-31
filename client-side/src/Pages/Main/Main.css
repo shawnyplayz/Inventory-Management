@@ -1,0 +1,6 @@
+.bgImg {
+  background: url(https://cdn.pixabay.com/photo/2016/11/23/15/14/jars-1853439_960_720.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}

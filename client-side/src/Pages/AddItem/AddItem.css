@@ -1,0 +1,27 @@
+.btn-width {
+  width: 12rem;
+}
+
+.btn-color-right {
+  border: 2px solid #00a948 !important;
+  background-color: white;
+  color: #212529;
+}
+
+.btn-color-right:hover {
+  border: 2px solid #00a948;
+  background-color: #00a948;
+  color: white;
+}
+
+.btn-color-right:focus {
+  border: 2px solid #00a948;
+  background-color: transparent !important;
+  color: black !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.realbtn-width {
+  width: 12rem;
+}
