@@ -23,13 +23,15 @@ const addItems = async (req, res, next) => {
   const { name1, name2, price, vendorName, date } = req.body
   let items;
   try {
-    items = new User({
-      name1,
-      name2,
-      price,
-      vendorName,
-      date,
-    });
+    items = new Item(
+      {
+        name1,
+        name2,
+        price,
+        vendorName,
+        date,
+      }
+    );
 
     await items.save();
   } catch (err) {
