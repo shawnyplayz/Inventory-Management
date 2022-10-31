@@ -2,15 +2,15 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const router = require("./Routes/item-routes");
-require('dotenv').config()
-const cors = require('cors');
+require("dotenv").config();
+const cors = require("cors");
 const PORT = process.env.PORT || 4000;
+
 connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.DATABASE_URL, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-
     });
     console.log(`MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
@@ -21,11 +21,9 @@ connectDB = async () => {
 
 connectDB();
 
-
-
 app.use(cors());
 app.use(express.json());
-app.use("/items", router)
+app.use("/items", router);
 
 app.listen(PORT, () => {
   console.log(`App listen on ${PORT} port`);
