@@ -42,12 +42,12 @@ const addItems = async (req, res, next) => {
   }
 };
 const sortByDate = async (req, res, next) => {
-  const arr = req.body;
+  // const arr = req.body;
   let items;
   try {
     debugger;
-    console.log("arr :>> ", arr);
-    items = await arr.find().sort({ vendorName: -1 });
+    // console.log("arr :>> ", arr);
+    items = await Item.find().sort({ date: -1 });
     // console.log(items);
     res.json(items);
     // if (!items) {
@@ -60,6 +60,24 @@ const sortByDate = async (req, res, next) => {
     res.send("Error" + err);
   }
 };
+const sortByVendorName = async (req,res,next)=>{
+  let items;
+  try {
+    debugger;
+    // console.log("arr :>> ", arr);
+    items = await Item.find().sort({ vendorName: -1 });
+    // console.log(items);
+    res.json(items);
+    // if (!items) {
+    //   return res.status(404).json({ message: "No items found" });
+    // } else {
+    //   return res.status(200).json({ items });
+    // }
+  } catch (err) {
+    console.log(err);
+    res.send("Error" + err);
+  }
+}
 
 // const getUserById = async (req, res, next) => {
 
@@ -133,6 +151,7 @@ const sortByDate = async (req, res, next) => {
 exports.getAllItems = getAllItems;
 exports.addItems = addItems;
 exports.sortByDate = sortByDate;
+exports.sortByVendorName = sortByVendorName;
 // exports.getUserById = getUserById;
 // exports.updateUser = updateUser;
 // exports.deleteUser = deleteUser;

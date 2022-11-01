@@ -4,7 +4,8 @@ const ItemController = require("../Controller/item-controller");
 
 router.get("/", ItemController.getAllItems);
 router.post("/", ItemController.addItems);
-router.post("/", ItemController.sortByDate);
+router.get("/date", ItemController.sortByDate);
+router.get("/vendorName", ItemController.sortByDate);
 // router.get("/:id", ItemController.getUserById);
 // router.put("/:id", ItemController.updateUser);
 // router.delete("/:id", ItemController.deleteUser);
