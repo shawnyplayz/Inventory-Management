@@ -22,11 +22,12 @@ import {
 } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import "../AddItem/AddItem.css";
+import Swal from "sweetalert2";
 function AddItem() {
-  const [name1, setName1] = useState("");
-  const [name2, setName2] = useState("");
+  const [name1, setName1] = useState(null);
+  const [name2, setName2] = useState(null);
   const [price, setPrice] = useState(0);
-  const [vendorName, setVendorName] = useState("");
+  const [vendorName, setVendorName] = useState(null);
   const [date, setDate] = useState(null);
 
   const adding = async () => {
@@ -45,13 +46,41 @@ function AddItem() {
       .post(`http://localhost:4000/items`, JSON.parse(str))
       .then((response) => {
         debugger;
-        resp = response.data;
-        console.log("resp :>> ", resp);
+        if (response.status === 200) {
+          resp = response.data;
+          // console.log("resp :>> ", resp);
+          Swal.fire({
+            icon: "success",
+            text: "Item added successfully!",
+            confirmButtonColor: "grey",
+            buton: "Ok",
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              clearDetails()
+            }
+          })
+        }
+        else {
+          Swal({
+            icon: "error",
+            text: "Failed to add Item",
+            buton: "Ok"
+          })
+        }
+
       })
       .catch(function (error) {
         console.log(error);
       });
   };
+  const clearDetails = () => {
+    setName1(null)
+    setName2(null)
+    setPrice(0)
+    setVendorName(null)
+    setDate(null)
+  }
   return (
     <div>
       <Container className="d-flex justify-content-center align-middle mt-5">
@@ -142,6 +171,7 @@ function AddItem() {
                 <Button
                   className="btn-width btn-color-right h-100"
                   onClick={adding}
+
                 >
                   {"Submit"}
                 </Button>
@@ -151,6 +181,7 @@ function AddItem() {
                 <Button
                   className="rounded realbtn-width btn-color-right h-100"
                   size="md"
+                  onClick={clearDetails}
                 >
                   {"Clear"}
                 </Button>
