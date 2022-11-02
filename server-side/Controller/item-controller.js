@@ -45,32 +45,10 @@ const sortByDate = async (req, res, next) => {
   // const arr = req.body;
   let items;
   try {
-<<<<<<< HEAD
-    items = Item.find().sort({ date: 1 });
-    console.log(items);
-    res.json(items);
-    // if (!items) {
-    //   return res.status(404).json({ message: "No items found" });
-    // } else {
-    //   return res.status(200).json({ items });
-    // }
-  } catch (err) {
-    console.log(err);
-    res.send("Error" + err);
-  }
-};
-const sortByVendorDate = async (req, res, next) => {
-  // const arr = req.body;
-  let items;
-  try {
-    items = Item.find().sort({ vendorName: 1 });
-    console.log(items);
-=======
     debugger;
     // console.log("arr :>> ", arr);
     items = await Item.find().sort({ date: -1 });
     // console.log(items);
->>>>>>> 9d88482f0c63a625cacfdc3af39b793b55edfa8b
     res.json(items);
     // if (!items) {
     //   return res.status(404).json({ message: "No items found" });
@@ -82,7 +60,7 @@ const sortByVendorDate = async (req, res, next) => {
     res.send("Error" + err);
   }
 };
-const sortByVendorName = async (req,res,next)=>{
+const sortByVendorName = async (req, res, next) => {
   let items;
   try {
     debugger;
@@ -173,11 +151,7 @@ const sortByVendorName = async (req,res,next)=>{
 exports.getAllItems = getAllItems;
 exports.addItems = addItems;
 exports.sortByDate = sortByDate;
-<<<<<<< HEAD
-exports.sortByVendorDate = sortByVendorDate;
-=======
 exports.sortByVendorName = sortByVendorName;
->>>>>>> 9d88482f0c63a625cacfdc3af39b793b55edfa8b
 // exports.getUserById = getUserById;
 // exports.updateUser = updateUser;
 // exports.deleteUser = deleteUser;

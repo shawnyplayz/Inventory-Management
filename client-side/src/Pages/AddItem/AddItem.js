@@ -9,7 +9,7 @@
 // }
 
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Button,
   ButtonGroup,
@@ -26,9 +26,15 @@ import Swal from "sweetalert2";
 function AddItem() {
   const [name1, setName1] = useState(null);
   const [name2, setName2] = useState(null);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(null);
   const [vendorName, setVendorName] = useState(null);
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(0);
+  const FirstName = useRef(null);
+  const SecondName = useRef(null)
+  const Price = useRef(null)
+  const Vendor = useRef(null)
+  const Date = useRef(null)
+  console.log('FirstName :>> ', FirstName.current);
 
   const adding = async () => {
     let resp;
@@ -80,6 +86,14 @@ function AddItem() {
     setPrice(0)
     setVendorName(null)
     setDate(null)
+    debugger
+    FirstName.current.focus()
+    FirstName.current.value = null;
+    SecondName.current.value = null;
+    Price.current.value = null;
+    Vendor.current.value = null;
+    Date.current.value = null;
+
   }
   return (
     <div>
@@ -91,37 +105,47 @@ function AddItem() {
           <Card.Body>
             <Row>
               <Col sm={12} md={12} lg={12}>
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Name 1"
-                  className="mb-3"
+                <input
+                  className="mb-3 form-control"
+                  placeholder="Name 1"
+                  type='text'
                   value={name1}
-                  name="name1"
                   onChange={(e) => {
                     setName1(e.target.value);
                   }}
-                >
-                  <Form.Control type="text" placeholder="Name 1" />
-                </FloatingLabel>
+                  ref={FirstName}
+                ></input>
               </Col>
               <Col sm={12} md={12} lg={12}>
-                <FloatingLabel
+                {/* <FloatingLabel
                   controlId="floatingInput"
                   label="Name 2"
                   className="mb-3"
                   value={name2}
+                  ref={SecondName}
                   name="name2"
                   onChange={(e) => {
                     setName2(e.target.value);
                   }}
                 >
                   <Form.Control type="text" placeholder="Password" />
-                </FloatingLabel>
+                </FloatingLabel> */}
+                <input
+                  className="mb-3 form-control"
+                  placeholder="Name 2"
+                  type='text'
+                  value={name2}
+                  onChange={(e) => {
+                    setName2(e.target.value);
+                  }}
+                  ref={SecondName}
+                ></input>
               </Col>
               <Col sm={12} md={12} lg={12}>
-                <FloatingLabel
+                {/* <FloatingLabel
                   controlId="floatingInput"
                   label="Price"
+                  ref={Price}
                   className="mb-3"
                   value={price}
                   name="price"
@@ -130,13 +154,24 @@ function AddItem() {
                   }}
                 >
                   <Form.Control type="number" placeholder="Price" />
-                </FloatingLabel>
+                </FloatingLabel> */}
+                <input
+                  className="mb-3 form-control"
+                  placeholder="Price"
+                  type='number'
+                  value={price}
+                  onChange={(e) => {
+                    setPrice(e.target.value);
+                  }}
+                  ref={Price}
+                ></input>
               </Col>
               <Col sm={12} md={12} lg={12}>
-                <FloatingLabel
+                {/* <FloatingLabel
                   controlId="floatingInput"
                   label="Vendor Name"
                   className="mb-3"
+                  ref={Vendor}
                   value={vendorName}
                   name="vendorName"
                   onChange={(e) => {
@@ -144,13 +179,24 @@ function AddItem() {
                   }}
                 >
                   <Form.Control type="name" placeholder="Vendor Name" />
-                </FloatingLabel>
+                </FloatingLabel> */}
+                <input
+                  type='text'
+                  className="mb-3 form-control"
+                  placeholder="Vendor Name"
+                  value={vendorName}
+                  onChange={(e) => {
+                    setVendorName(e.target.value);
+                  }}
+                  ref={Vendor}
+                ></input>
               </Col>
               <Col sm={12} md={12} lg={12}>
-                <FloatingLabel
+                {/* <FloatingLabel
                   controlId="floatingInput"
                   label="Date"
                   className="mb-3"
+                  ref={Date}
                   value={date}
                   name="Date"
                   onChange={(e) => {
@@ -158,7 +204,17 @@ function AddItem() {
                   }}
                 >
                   <Form.Control type="date" placeholder="Date" />
-                </FloatingLabel>
+                </FloatingLabel> */}
+                <input
+                  type="date"
+                  className="mb-3 form-control"
+                  placeholder="Date"
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e.target.value);
+                  }}
+                  ref={Date}
+                ></input>
               </Col>
             </Row>
           </Card.Body>

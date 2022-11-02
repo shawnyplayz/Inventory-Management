@@ -65,16 +65,26 @@ export default class Home extends Component {
         <Container className="mt-5">
           <Card>
             <Card.Header>
-              <div className="d-flex justify-content-evenly">
-              <h3>Inventory Items</h3>
-              <Button onClick={this.sortByDate}>
-                <h6>Sort By Date</h6>
-              </Button>
-              <Button onClick={this.sortbyVendorName}>
-                <h6>Sort By Vendor Name</h6>
-              </Button>
-              </div>
-              
+              <Row>
+                <Col md={6}>
+                  <h3>Inventory Items</h3>
+                </Col>
+                <Col md={3}>
+                  <Button onClick={this.sortByDate} className="btn btn-secondary">
+                    <h6>Sort By Date</h6>
+                  </Button>
+                </Col>
+                <Col md={3}>
+                  <Button onClick={this.sortbyVendorName} className="btn btn-secondary">
+                    <h6>Sort By Vendor Name</h6>
+                  </Button>
+                </Col>
+              </Row>
+
+
+
+
+
             </Card.Header>
             <Card.Body>
               <Table striped bordered hover responsive="lg">
