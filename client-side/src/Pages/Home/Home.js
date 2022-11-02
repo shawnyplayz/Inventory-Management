@@ -18,6 +18,8 @@ export default class Home extends Component {
       capturedData: null,
     };
     this.firstCall = this.firstCall.bind(this);
+    this.sortByDate = this.sortByDate.bind(this);
+    this.sortbyVendorName = this.sortbyVendorName.bind(this);
   }
   componentDidMount() {
     this.firstCall();
@@ -40,8 +42,21 @@ export default class Home extends Component {
   }
   async sortByDate() {
     let temp;
-    await axios.post(`http://localhost:4000/items`).then(function (response) {
+    await axios.get(`http://localhost:4000/items/date`).then(function (response) {
       temp = response.data;
+    });
+    this.setState({
+      capturedData: temp,
+    });
+  }
+  async sortbyVendorName() {
+    let temp;
+    await axios.get(`http://localhost:4000/items/vendorName`).then(function (response) {
+      temp = response.data;
+    });
+    debugger
+    this.setState({
+      capturedData: temp,
     });
   }
   render() {
@@ -50,10 +65,16 @@ export default class Home extends Component {
         <Container className="mt-5">
           <Card>
             <Card.Header>
+              <div className="d-flex justify-content-evenly">
               <h3>Inventory Items</h3>
               <Button onClick={this.sortByDate}>
-                <h4>Sort By Date</h4>
+                <h6>Sort By Date</h6>
               </Button>
+              <Button onClick={this.sortbyVendorName}>
+                <h6>Sort By Vendor Name</h6>
+              </Button>
+              </div>
+              
             </Card.Header>
             <Card.Body>
               <Table striped bordered hover responsive="lg">
